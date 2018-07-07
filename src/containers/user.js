@@ -8,13 +8,21 @@ class User extends React.Component {
     this.state = {
       name: this.props.user.name
     }
+    this.handleClick = this.handleClick.bind(this)
   };
+
+  handleClick(){
+    this.props.changeUser(this.props.user.id)
+    this.props.switchUser()
+  }
 
     render() {
 
 
       return (
-      <div className="user">
+      <div
+        className={this.props.switch? "user switch" : "user"}
+        onClick = {this.handleClick}>
         <div className="online">
         </div>
         {this.props.user.name}

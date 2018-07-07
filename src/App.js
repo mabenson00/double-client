@@ -33,9 +33,12 @@ class App extends Component {
 
     this.addUser = this.addUser.bind(this)
     this.getUserName = this.getUserName.bind(this)
+    this.changeUser = this.changeUser.bind(this)
   }
 
-
+  changeUser(id) {
+    this.setState({current_user: id})
+  }
   addUser(name) {
     var id = this.state.users[this.state.users.length-1].id + 1
     var user = {name: name, id: id}
@@ -62,6 +65,7 @@ class App extends Component {
               users = {this.state.users}
               getUserName = {this.getUserName}
               addUser = {this.addUser}
+              changeUser = {this.changeUser}
 
               />
               {this.state.response}

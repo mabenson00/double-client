@@ -10,12 +10,27 @@ class Sidebar extends React.Component {
   constructor(props) {
     super(props)
 
+    this.state = {
+      switch: false
+    }
+    this.switchUser = this.switchUser.bind(this)
     };
+
+    switchUser() {
+      this.setState({switch: !this.state.switch})
+    }
 
     render() {
       var userNodes = this.props.users.slice(0, 100).map(function ( user ) { // can change 100 as a variable to show more
-      return ( <User user={ user } />)
-    });
+        if (user.id != this.props.current_user){
+          return ( <User
+                    user={ user }
+                    switch={this.state.switch}
+                    switchUser = {this.switchUser}
+                    changeUser = {this.props.changeUser}
+                    key = {user.id} />)
+        }
+    }.bind(this));
 
 
       return (
@@ -27,6 +42,9 @@ class Sidebar extends React.Component {
           </div>
           <div className="current-user-name">
             {this.props.getUserName(this.props.current_user).replace(/ .*/,'')}
+          </div>
+          <div onClick={this.switchUser} className="switch-user">
+            Switch User
           </div>
 
         </div>
