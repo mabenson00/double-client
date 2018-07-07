@@ -3,22 +3,23 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 
 import './app.css';
+import './sidebar.css'
 import  Sidebar  from "./containers/sidebar"
-import NameForm from "./containers/nameform"
+
 const users = [
-  {name: "Sam",
+  {name: "Sam Jones",
   id: 1
   },
-  {name: "Ben",
+  {name: "Benjamin Humperdink",
   id: 2
   },
-  {name: "Jennifer",
+  {name: "Jennifer Lawrence",
   id: 3
   },
-  {name: "Michael",
+  {name: "Tom Jerry",
   id: 4
   },
-  {name: "Laura",
+  {name: "Laura Dunkin",
   id: 5
 }]
 
@@ -27,17 +28,26 @@ class App extends Component {
     super(props);
     this.state = {
       users: users,
-      response: ''
+      current_user: undefined
     };
 
     this.addUser = this.addUser.bind(this)
+    this.getUserName = this.getUserName.bind(this)
   }
 
 
   addUser(name) {
     var id = this.state.users[this.state.users.length-1].id + 1
     var user = {name: name, id: id}
-    this.setState({users: [...this.state.users, user] })
+    this.setState({users: [...this.state.users, user] }) // add user to users state
+    this.setState({current_user: user.id}) // set current_user as user ID
+  }
+
+  getUserName(userID) {
+    var user =  this.state.users.find((element) => {
+    return element.id === userID;
+  })
+  return user? user.name: ""
   }
 
   render() {
@@ -45,16 +55,19 @@ class App extends Component {
       <div className="App">
         <div className="wrapper">
           <nav id="sidebar">
+
+
             <Sidebar
+              current_user = {this.state.current_user}
               users = {this.state.users}
+              getUserName = {this.getUserName}
+              addUser = {this.addUser}
 
               />
               {this.state.response}
           </nav>
           <div id="content">
-          <NameForm
-            addUser = {this.addUser}
-          />
+
           </div>
         </div>
       </div>
