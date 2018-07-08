@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Chat from './chat.js'
+import $ from 'jquery'
 class Chats extends React.Component {
   constructor(props) {
     super(props)
@@ -12,7 +13,7 @@ class Chats extends React.Component {
     render() {
 
         var chatNodes = this.props.chats.slice(0, 5).map(function ( user ) {
-          if (user.id != this.props.current_user){
+          if (user.id != this.props.current_user & $.inArray( this.props.current_user, user) != -1){
             return ( <Chat
               current_user = {this.props.current_user}
               users = {user}

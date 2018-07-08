@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import $ from "jquery";
+import Message from './message'
 
 class Chat extends React.Component {
   constructor(props) {
@@ -9,17 +10,32 @@ class Chat extends React.Component {
       users: this.props.users,
       messages: [],
       open: this.props.open === true? true : false,
-      message: ""
+      message: ''
     }
 
     this.handleClick = this.handleClick.bind(this)
     this.toggleChat = this.toggleChat.bind(this)
     this.otherUserName = this.otherUserName.bind(this)
     this.handleChange = this.handleChange.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this)
+    this.addMessage = this.addMessage.bind(this)
   };
 
   handleChange(event) {
     this.setState({message: event.target.value});
+  }
+
+  handleSubmit(event) {
+    event.preventDefault()
+    this.addMessage(this.state.message)
+    this.setState({message: ""})
+
+  }
+
+  addMessage(text) {
+    var user = this.props.current_user
+    var message = {text: text, user: user}
+    this.setState({messages: [...this.state.messages, message]})
   }
 
   handleClick(){
@@ -36,6 +52,12 @@ class Chat extends React.Component {
   }
 
     render() {
+      var messageNodes = this.state.messages.slice(0, 5).map(function ( message ) {
+          return ( <Message
+            current_user = {this.props.current_user}
+            user = {message.user}
+            text =  {message.text} /> )
+    }.bind(this));
 
       return (
         <div className = {this.state.open? "chat open" : "chat closed"} >
@@ -45,16 +67,7 @@ class Chat extends React.Component {
           </div>
 
           <div className = "messages">
-            <div className = "message me">
-              <span>
-                Hi!!!
-              </span>
-            </div>
-            <div className = "message you">
-              <span>
-                Yo dude
-              </span>
-            </div>
+          {messageNodes}
           </div>
           <form className="message-form" onSubmit={this.handleSubmit}>
               <input className="message-input" type="text" placeholder="type a message..." value={this.state.message} onChange={this.handleChange} />

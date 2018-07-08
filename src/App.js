@@ -49,11 +49,9 @@ class App extends Component {
     }
   }
   checkForActiveChat(ids) {
-    var chat = function(element) {
-      return $(element).not(ids).get().length === 0
-    }
 
-    this.state.chats.some(chat)
+   return this.state.chats.some(x => JSON.stringify(x.sort()) == JSON.stringify(ids.sort()))
+
   }
 
 
