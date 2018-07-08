@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import $ from "jquery";
 import Message from './message'
 
@@ -11,7 +10,7 @@ class Chat extends React.Component {
       messages: [],
       open: this.props.open === true? true : false,
       message: '',
-      quote: 'f'
+      quote: 'f',
     }
 
     this.handleClick = this.handleClick.bind(this)
@@ -34,9 +33,9 @@ class Chat extends React.Component {
   }
 
   addMessage(text) {
+
     var user = this.props.current_user
-    console.log(text.charAt(0))
-    if (text.charAt(0) == "$") {
+    if (text.charAt(0) === "$") {
       var symbol = text.replace(/ .*/,'').substring(1);
       fetch(`https://api.iextrading.com/1.0/stock/${symbol}/batch?types=quote&range=1m&last=1`)
       .then(response => {
@@ -47,18 +46,33 @@ class Chat extends React.Component {
           this.setState({messages: [...this.state.messages, message]})
           return false
         }
-      })
+      }) // stock data
       .then(data => data && this.setState({messages: [...this.state.messages, {text: data.quote.companyName + " is currently at $" + data.quote.latestPrice, user: user}]}));
-    } else if (text.replace(/ .*/,'') == "supersecretcolors") {
+    }
+
+    else if (text.replace(/ .*/,'') === "secretcolor") {
       var color = "#"+((1<<24)*Math.random()|0).toString(16)
       $('body').css('background-color', color)
+    } // secret color
 
-    } else {
+    else if (text == "") {
+      return
+    }  // don't submit if blank
+
+    else {
       var message = {text: text, user: user}
-
-      this.setState({messages: [...this.state.messages, message]})
+      this.setState({messages: [...this.state.messages, message]},
+        () => {
+          var d = $("#messages" + this.state.users.join(''));
+          d.scrollTop(d.prop("scrollHeight"));
+        } // make sure scroll height gets pulled after the new message has loadeda
+      )
 
     }
+
+
+
+
 
   }
 
@@ -76,11 +90,13 @@ class Chat extends React.Component {
   }
 
     render() {
-      var messageNodes = this.state.messages.slice(0, 5).map(function ( message ) {
+      var messageNodes = this.state.messages.slice(0, 10).map(function ( message, index ) {
           return ( <Message
             current_user = {this.props.current_user}
             user = {message.user}
-            text =  {message.text} /> )
+            text =  {message.text}
+            key = {index}
+             /> )
     }.bind(this));
 
       return (
@@ -90,7 +106,8 @@ class Chat extends React.Component {
             {this.otherUserName()}
           </div>
 
-          <div className = "messages">
+          <div id={"messages"+this.state.users.join('')}// unique id for scroll
+          className = "messages">
           {messageNodes}
           </div>
           <form className="message-form" onSubmit={this.handleSubmit}>

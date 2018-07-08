@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 class Message extends React.Component {
   constructor(props) {
     super(props)
@@ -17,7 +16,7 @@ class Message extends React.Component {
 
       return (
 
-        <div className={this.props.user == this.props.current_user? "message me" : "message you"}>
+        <div className={this.props.user === this.props.current_user? "message me" : "message you"}>
           <span>{this.props.text}</span>
         </div>
 

@@ -54,7 +54,8 @@
     .footer-chats .chat.open .messages {
       padding: 0px 25px 25px 25px;
       font-size: .8em;
-      height: 200px; }
+      height: 200px;
+      overflow: auto; }
       .footer-chats .chat.open .messages .message {
         padding-top: 5px;
         width: 100%;

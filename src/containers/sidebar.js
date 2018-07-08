@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import User from './user';
 import NameForm from "./nameform"
 
@@ -22,7 +21,7 @@ class Sidebar extends React.Component {
 
     render() {
       var userNodes = this.props.users.slice(0, 100).map(function ( user ) { // can change 100 as a variable to show more
-        if (user.id != this.props.current_user){
+        if (user.id !== this.props.current_user){
           return ( <User
                     user={ user }
                     switch={this.state.switch}

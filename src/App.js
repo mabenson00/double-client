@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
 
-import logo from './logo.svg';
 
 import './app.css';
 import './sidebar.css'
 import './footer.css'
 import  Sidebar  from "./containers/sidebar"
 import Chats from "./containers/chats"
-import $ from "jquery";
 
 
 const users = [
@@ -50,7 +48,7 @@ class App extends Component {
   }
   checkForActiveChat(ids) {
 
-   return this.state.chats.some(x => JSON.stringify(x.sort()) == JSON.stringify(ids.sort()))
+   return this.state.chats.some(x => JSON.stringify(x.sort()) === JSON.stringify(ids.sort()))
 
   }
 

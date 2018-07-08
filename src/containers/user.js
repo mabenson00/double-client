@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 var FontAwesome = require('react-fontawesome');
 
 class User extends React.Component {
@@ -25,7 +24,8 @@ class User extends React.Component {
 
       return (
       <div
-        className={this.props.switch? "user switch" : "user"}
+        className={this.props.switch? "user switch" : "user " +this.props.user.id}
+        id={this.props.user.id}
         onClick = {this.handleClick}>
         <div className="online">
         </div>
