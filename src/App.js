@@ -33,7 +33,7 @@ class App extends Component {
     this.state = {
       users: users,
       current_user: undefined,
-      chats: [[1, 6]]
+      chats: []
     };
 
     this.addUser = this.addUser.bind(this)
