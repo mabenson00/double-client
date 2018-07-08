@@ -37,8 +37,8 @@ npm start
   - To see those messages click switch user and then on the friend you want to change to
 
 ### Easter eggs
-  -Chat $stocksymbol to pull the latest price for that stock
-  -Chat "secretcolor"
+  - Chat $stocksymbol to pull the latest price for that stock
+  - Chat "secretcolor"
 
 
 
