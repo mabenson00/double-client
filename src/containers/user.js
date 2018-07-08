@@ -12,8 +12,12 @@ class User extends React.Component {
   };
 
   handleClick(){
-    this.props.changeUser(this.props.user.id)
-    this.props.switchUser()
+    if (this.props.switch) {
+      this.props.changeUser(this.props.user.id)
+      this.props.switchUser()
+    } else {
+      this.props.startChat([this.props.user.id, this.props.current_user])
+    }
   }
 
     render() {

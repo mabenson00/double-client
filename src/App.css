@@ -20,4 +20,11 @@ body {
   height: 100vh; }
 
 .wrapper {
-  height: 100vh; }
+  height: 100vh;
+  display: flex;
+  flex-direction: row; }
+  .wrapper #content {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    justify-content: flex-end; }

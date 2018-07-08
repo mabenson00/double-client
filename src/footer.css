@@ -1,0 +1,73 @@
+.footer-chats {
+  width: 100%;
+  display: flex;
+  flex-direction: row; }
+  .footer-chats .chat {
+    min-width: 170px;
+    margin: 0px 10px; }
+  .footer-chats .chat.closed {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end; }
+    .footer-chats .chat.closed .message-form {
+      display: none; }
+    .footer-chats .chat.closed .online {
+      background: #35ac19;
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      margin-right: 5px; }
+    .footer-chats .chat.closed .messages {
+      display: none; }
+    .footer-chats .chat.closed .chat-name {
+      background-color: #fff;
+      padding: 2px 4px;
+      font-size: .8em; }
+  .footer-chats .chat.open {
+    background-color: #fff;
+    color: #333;
+    min-width: 240px; }
+    .footer-chats .chat.open .message-form {
+      width: 100%; }
+      .footer-chats .chat.open .message-form input {
+        width: 100%;
+        padding: 2px 5px;
+        font-size: .8em;
+        border-bottom: 0px;
+        border-right: 0px;
+        border-left: 0px;
+        border-top: 1px solid #ced4da; }
+    .footer-chats .chat.open .online {
+      background: #35ac19;
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      margin-right: 5px; }
+    .footer-chats .chat.open .chat-name {
+      background-color: #4080ff;
+      padding: 2px 4px;
+      font-size: .8em;
+      color: #fff; }
+    .footer-chats .chat.open .messages {
+      padding: 0px 25px 25px 25px;
+      font-size: .8em; }
+      .footer-chats .chat.open .messages .message {
+        padding-top: 5px;
+        width: 100%;
+        display: flex;
+        flex-direction: row; }
+        .footer-chats .chat.open .messages .message span {
+          padding: 7px;
+          border-radius: 20%; }
+      .footer-chats .chat.open .messages .message.me {
+        text-align: right;
+        justify-content: flex-end; }
+        .footer-chats .chat.open .messages .message.me span {
+          background-color: #4080ff; }
+      .footer-chats .chat.open .messages .message.you {
+        text-align: left;
+        justify-content: flex-start; }
+        .footer-chats .chat.open .messages .message.you span {
+          background-color: #e9ebee; }

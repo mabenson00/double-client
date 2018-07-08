@@ -28,7 +28,9 @@ class Sidebar extends React.Component {
                     switch={this.state.switch}
                     switchUser = {this.switchUser}
                     changeUser = {this.props.changeUser}
-                    key = {user.id} />)
+                    startChat = {this.props.startChat}
+                    key = {user.id}
+                    current_user = {this.props.current_user} />)
         }
     }.bind(this));
 
@@ -49,9 +51,11 @@ class Sidebar extends React.Component {
 
         </div>
       }
+      {this.props.current_user &&
         <div className="user-list">
           {userNodes}
         </div>
+      }
         {!this.props.current_user &&
           <NameForm addUser = {this.props.addUser}
         />}

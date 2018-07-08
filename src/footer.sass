@@ -1,0 +1,76 @@
+.footer-chats
+  width: 100%
+  display: flex
+  flex-direction: row
+  .chat
+    min-width: 170px
+    margin: 0px 10px
+  .chat.closed
+    display: flex
+    flex-direction: column
+    justify-content: flex-end
+    .message-form
+      display: none
+    .online
+      background: #35ac19
+      display: inline-block
+      width: 10px
+      height: 10px
+      border-radius: 50%
+      margin-right: 5px
+    .messages
+      display: none
+    .chat-name
+      background-color: #fff
+      padding: 2px 4px
+      font-size: .8em
+  .chat.open
+    background-color: #fff
+    color: #333
+    min-width: 240px
+    .message-form
+      width: 100%
+      input
+        width: 100%
+        padding: 2px 5px
+        font-size: .8em
+        border-bottom: 0px
+        border-right: 0px
+        border-left: 0px
+        border-top: 1px solid #ced4da
+    .online
+      background: #35ac19
+      display: inline-block
+      width: 10px
+      height: 10px
+      border-radius: 50%
+      margin-right: 5px
+    .chat-name
+      background-color: #4080ff
+      padding: 2px 4px
+      font-size: .8em
+      color: #fff
+    .messages
+      padding: 0px 25px 25px 25px
+      font-size: .8em
+
+      .message
+        padding-top: 5px
+        width: 100%
+        display: flex
+        flex-direction: row
+        span
+          padding: 7px
+          border-radius: 20%
+      .message.me
+        text-align: right
+        justify-content: flex-end
+
+        span
+          background-color: #4080ff
+      .message.you
+        text-align: left
+        justify-content: flex-start
+
+        span
+          background-color: #e9ebee
