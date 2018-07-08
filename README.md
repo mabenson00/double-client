@@ -43,6 +43,7 @@ npm start
 
 
 ### To Do List
+- Tests
 - Opened state of chats is same across users
 - Can't close chats
 - Can't set avatar
